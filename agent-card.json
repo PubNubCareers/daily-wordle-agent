@@ -1,0 +1,86 @@
+{
+  "identity": {
+    "agentName": "daily_wordle_agent",
+    "displayName": "Daily Wordle Agent",
+    "description": "Runs a cheerful Wordle-style 5-letter word guessing game with scoring, attempts, hints, and answer reveal behavior.",
+    "version": "1.0.1",
+    "provider": {
+      "organization": "Rama Sudha"
+    }
+  },
+  "capabilities": {
+    "taskKinds": [
+      "request"
+    ]
+  },
+  "io": {
+    "inputs": [
+      {
+        "id": "request",
+        "description": "Wordle game action. Send start, guess, or reveal. Pass the returned state back on the next call.",
+        "contentType": "application/json",
+        "required": true,
+        "example": {
+          "action": "guess",
+          "guess": "crane",
+          "state": {
+            "answerToken": "YXBwbGU=",
+            "attempts": [],
+            "maxAttempts": 6,
+            "status": "playing",
+            "hintOffered": false
+          }
+        },
+        "schema": {
+          "type": "object",
+          "properties": {
+            "action": {
+              "type": "string",
+              "enum": [
+                "start",
+                "guess",
+                "reveal"
+              ],
+              "default": "guess"
+            },
+            "guess": {
+              "type": "string",
+              "description": "A 5-letter guess."
+            },
+            "state": {
+              "type": "object",
+              "default": null,
+              "description": "State returned by the previous call. Leave this empty/null for the first guess."
+            },
+            "options": {
+              "type": "object",
+              "default": null,
+              "description": "Optional test settings, such as a fixed secretWord. Leave this empty/null during normal play."
+            }
+          }
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "result",
+        "description": "Wordle result with message, state, attempts, status, and answer when revealed.",
+        "contentType": "application/json",
+        "guaranteed": true
+      }
+    ]
+  },
+  "skills": [
+    {
+      "id": "play-wordle",
+      "name": "Play Wordle",
+      "description": "Starts a Wordle game, scores 5-letter guesses, tracks attempts, gives a hint after 3 failed guesses, and reveals the answer only when appropriate."
+    }
+  ],
+  "runtime": {
+    "handler": "./handler.ts",
+    "handlerExport": "default",
+    "concurrency": 1,
+    "expectedInstances": 1
+  }
+}

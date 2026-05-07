@@ -1,0 +1,11 @@
+{
+  "action": "guess",
+  "guess": "crane",
+  "state": {
+    "answerToken": "YXBwbGU=",
+    "attempts": [],
+    "maxAttempts": 6,
+    "status": "playing",
+    "hintOffered": false
+  }
+}

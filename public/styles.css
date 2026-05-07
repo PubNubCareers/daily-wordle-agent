@@ -1,0 +1,226 @@
+:root {
+  color-scheme: light;
+  --ink: #1f2933;
+  --muted: #667085;
+  --paper: #fffaf2;
+  --panel: #ffffff;
+  --line: #d6d3cb;
+  --correct: #3f8f5f;
+  --present: #d3a235;
+  --absent: #7b8490;
+  --accent: #1f6f8b;
+  --accent-strong: #164f66;
+  --danger: #a33b3b;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    linear-gradient(135deg, rgba(31, 111, 139, 0.18), transparent 36%),
+    linear-gradient(315deg, rgba(211, 162, 53, 0.2), transparent 34%),
+    var(--paper);
+  color: var(--ink);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.game {
+  width: min(100%, 430px);
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.eyebrow {
+  margin: 0 0 4px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  font-size: 38px;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.icon-button {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--ink);
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.board {
+  display: grid;
+  gap: 8px;
+  margin: 18px 0;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+
+.tile {
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--line);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--ink);
+  font-size: 28px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.tile.correct,
+.tile.present,
+.tile.absent {
+  color: #fff;
+  border-color: transparent;
+}
+
+.tile.correct {
+  background: var(--correct);
+}
+
+.tile.present {
+  background: var(--present);
+}
+
+.tile.absent {
+  background: var(--absent);
+}
+
+.guess-form {
+  margin-top: 20px;
+}
+
+.guess-form label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.guess-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+}
+
+input {
+  width: 100%;
+  min-width: 0;
+  height: 50px;
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  padding: 0 14px;
+  color: var(--ink);
+  font-size: 22px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+input:focus {
+  border-color: var(--accent);
+  outline: 3px solid rgba(31, 111, 139, 0.18);
+}
+
+button {
+  height: 50px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  padding: 0 18px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--accent-strong);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.62;
+}
+
+.message {
+  min-height: 48px;
+  margin: 14px 0 0;
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.actions button {
+  background: #ece7dc;
+  color: var(--ink);
+}
+
+.actions button:hover {
+  background: #ded6c8;
+}
+
+.actions #reveal {
+  color: var(--danger);
+}
+
+@media (max-width: 380px) {
+  .shell {
+    padding: 16px;
+  }
+
+  h1 {
+    font-size: 32px;
+  }
+
+  .tile {
+    font-size: 23px;
+  }
+
+  .guess-row {
+    grid-template-columns: 1fr;
+  }
+}

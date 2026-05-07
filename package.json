@@ -1,0 +1,27 @@
+{
+  "name": "daily_wordle_agent",
+  "version": "1.0.1",
+  "description": "Reusable Wordle-style guessing game agent for Blocks.ai.",
+  "type": "module",
+  "main": "src/dailyWordleAgent.js",
+  "scripts": {
+    "test": "node test/dailyWordleAgent.test.js",
+    "check": "blocks check",
+    "start": "blocks run",
+    "game": "node game-server.js"
+  },
+  "keywords": [
+    "blocks-ai",
+    "agent",
+    "wordle"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@blocks-network/sdk": "latest",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "tsx": "^4.20.6",
+    "typescript": "^5.4.5"
+  }
+}

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Daily Wordle Agent</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="game" aria-labelledby="title">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Blocks.ai agent game</p>
+            <h1 id="title">Daily Wordle</h1>
+          </div>
+          <button id="new-game" class="icon-button" type="button" aria-label="Start new game" title="Start new game">
+            ↻
+          </button>
+        </header>
+
+        <div id="board" class="board" aria-label="Wordle board"></div>
+
+        <form id="guess-form" class="guess-form">
+          <label for="guess-input">Your guess</label>
+          <div class="guess-row">
+            <input
+              id="guess-input"
+              name="guess"
+              autocomplete="off"
+              maxlength="5"
+              inputmode="text"
+              placeholder="SPEAR"
+              aria-describedby="message"
+            />
+            <button id="submit" type="submit">Guess</button>
+          </div>
+        </form>
+
+        <p id="message" class="message" role="status">Starting a fresh game...</p>
+
+        <div class="actions">
+          <button id="hint" type="button">Hint</button>
+          <button id="reveal" type="button">Reveal</button>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
