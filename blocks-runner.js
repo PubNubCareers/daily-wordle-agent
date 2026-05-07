@@ -1,6 +1,8 @@
 import { createServer } from 'node:http';
 import { spawn } from 'node:child_process';
+import { existsSync } from 'node:fs';
 import { homedir } from 'node:os';
+import { join } from 'node:path';
 
 const PORT = Number(process.env.PORT ?? 10000);
 const HOST = process.env.RENDER ? '0.0.0.0' : '127.0.0.1';
@@ -23,7 +25,7 @@ server.listen(PORT, HOST, () => {
 });
 
 function startBlocksRunner() {
-  const command = process.env.BLOCKS_COMMAND ?? `${homedir()}/.blocks/bin/blocks`;
+  const command = process.env.BLOCKS_COMMAND ?? findBlocksBinary();
   const args = ['run'];
   const child = spawn(command, args, {
     env: process.env,
@@ -51,4 +53,20 @@ function startBlocksRunner() {
     console.log(`blocks run exited with code ${code}. Restarting in 5 seconds...`);
     setTimeout(startBlocksRunner, 5000);
   });
+}
+
+function findBlocksBinary() {
+  const candidates = [
+    `${homedir()}/.blocks/bin/blocks`,
+    join(process.cwd(), 'node_modules', '@blocks-network', 'cli-linux-x64', 'blocks'),
+    join(process.cwd(), 'node_modules', '@blocks-network', 'cli-darwin-arm64', 'blocks'),
+    join(process.cwd(), 'node_modules', '@blocks-network', 'cli-darwin-x64', 'blocks'),
+  ];
+
+  const found = candidates.find((candidate) => existsSync(candidate));
+  if (found) {
+    return found;
+  }
+
+  return 'blocks';
 }
