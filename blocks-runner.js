@@ -1,5 +1,6 @@
 import { createServer } from 'node:http';
 import { spawn } from 'node:child_process';
+import { homedir } from 'node:os';
 
 const PORT = Number(process.env.PORT ?? 10000);
 const HOST = process.env.RENDER ? '0.0.0.0' : '127.0.0.1';
@@ -22,10 +23,8 @@ server.listen(PORT, HOST, () => {
 });
 
 function startBlocksRunner() {
-  const command = process.env.BLOCKS_COMMAND ?? 'npx';
-  const args = process.env.BLOCKS_COMMAND
-    ? ['run']
-    : ['-y', '@blocks-network/cli', 'run'];
+  const command = process.env.BLOCKS_COMMAND ?? `${homedir()}/.blocks/bin/blocks`;
+  const args = ['run'];
   const child = spawn(command, args, {
     env: process.env,
     stdio: ['ignore', 'pipe', 'pipe'],
