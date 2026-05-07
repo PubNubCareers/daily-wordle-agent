@@ -8,7 +8,8 @@
     "test": "node test/dailyWordleAgent.test.js",
     "check": "blocks check",
     "start": "blocks run",
-    "game": "node game-server.js"
+    "game": "node game-server.js",
+    "runner": "node blocks-runner.js"
   },
   "keywords": [
     "blocks-ai",

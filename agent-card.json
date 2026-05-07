@@ -2,7 +2,7 @@
   "identity": {
     "agentName": "daily_wordle_agent",
     "displayName": "Daily Wordle Agent",
-    "description": "Runs a cheerful Wordle-style 5-letter word guessing game with scoring, attempts, hints, and answer reveal behavior.",
+    "description": "Runs a cheerful Wordle-style 5-letter word guessing game with scoring, attempts, hints, and answer reveal behavior. Play here: https://daily-wordle-agent.onrender.com",
     "version": "1.0.1",
     "provider": {
       "organization": "Rama Sudha"
