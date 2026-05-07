@@ -22,8 +22,11 @@ server.listen(PORT, HOST, () => {
 });
 
 function startBlocksRunner() {
-  const command = process.env.BLOCKS_COMMAND ?? 'blocks';
-  const child = spawn(command, ['run'], {
+  const command = process.env.BLOCKS_COMMAND ?? 'npx';
+  const args = process.env.BLOCKS_COMMAND
+    ? ['run']
+    : ['-y', '@blocks-network/cli', 'run'];
+  const child = spawn(command, args, {
     env: process.env,
     stdio: ['ignore', 'pipe', 'pipe'],
   });
